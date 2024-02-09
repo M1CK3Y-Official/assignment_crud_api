@@ -1,102 +1,64 @@
 import subscriberModel from "@/lib/db/mongo/models/subscriber.model";
-import dbConnect from "./db/dbConnect";
+import { getSubscribers, createSubscriber, updateSubscriber, deleteSubscriber } from "@/lib/data.service";
+import { NextResponse } from "next/server";
 
-export const getSubscribers = async (body) => {
+export async function GET() {
 
-    let result = {}; 
-
-    try {
-
-        await dbConnect();
-        result = await subscriberModel.find({});
-
-    } catch (error) {
-
-        result = {
-            errorCode : error.code,
-            message : 'Der skete en en validerings fejl?'
-        }
-    }
-
-    return JSON.parse(JSON.stringify(result));
+    console.log('\n------ Get Subscribers ------')
+    console.log('QANDA API ROUTE (GET) FOR AT FÅ ALLE QANDA')
+    console.log('KALDER getSubscribers() I DATA SERVICE')
+    const qandas = await getSubscribers()
+    
+    console.log('AFLEVERERE getQandas() RESULTAT TILBAGE TIL KALDEREN')
+    console.log('------\n')
+    return NextResponse.json(qandas)
 
 
 };
 
-export const createSubscriber = async (body) => {
+export async function POST(request) {
 
-    let result = {}; 
+    console.log('\n------ Create Subscriber ------')
+    console.log('KALDER API MED VORES BODY DATA')
+    const body = await request.json();
+    
+    console.log('KALDER createSubscriber() I DATA SERVICE')
+    const newSubscriber = await createSubscriber(body);
 
-    try {
-
-        await dbConnect();
-        
-        console.log('- DATA SERVICE : CREATE SUBSCRIBER')
-        result = await subscriberModel.create(body);
-
-    } catch (error) {
-
-        console.log('err', error)
-        result = {  
-            errorCode : error.code,
-            message : 'Der skete en en validerings fejl?'
-        }
-    }
-
-    console.log('- DATA SERVICE : RETURN CREATED SUBSCRIBER')
-    return JSON.parse(JSON.stringify(result));
+    console.log('AFLEVERERE createSubscriber() RESULTAT TILBAGE TIL KALDEREN')
+    console.log('------\n')
+    return NextResponse.json(newSubscriber)
 
 
 };
 
-export const updateSubscriber = async (body) => {
+export async function PUT(request) {
 
-    let result = {}; 
+    console.log('\n------ Update Subscriber ------')
+    console.log('KALDER API MED VORES BODY DATA')
+    const body = await request.json();
+    
+    console.log('KALDER updateSubscriber() I DATA SERVICE')
+    const newSubscriber = await updateSubscriber(body);
 
-    try {
+    console.log('AFLEVERERE updateSubscriber() RESULTAT TILBAGE TIL KALDEREN')
+    console.log('------\n')
+    return NextResponse.json(newSubscriber)
 
-        await dbConnect();
-        
-        console.log('- DATA SERVICE : UPDATE SUBSCRIBER')
-        result = await subscriberModel.findByIdAndUpdate({_id: body.id}, body);
+}
 
-    } catch (error) {
+export async function DELETE(request) {
 
-        console.log('err', error)
-        result = {  
-            errorCode : error.code,
-            message : 'Der skete en en validerings fejl?'
-        }
-    }
+    console.log('\n------ Delete Subscriber ------')
+    console.log('KALDER API MED VORES BODY DATA')
+    const body = await request.json();
+    
+    console.log('KALDER deleteSubscriber() I DATA SERVICE')
+    const newSubscriber = await deleteSubscriber(body);
 
-    console.log('- DATA SERVICE : RETURN CREATED SUBSCRIBER')
-    return JSON.parse(JSON.stringify(result));
+    console.log('AFLEVERERE deleteSubscriber() RESULTAT TILBAGE TIL KALDEREN')
+    console.log('------\n')
+    return NextResponse.json(newSubscriber)
 
+}
 
-};
-
-export const deleteSubscriber = async (id) => {
-
-    let result = {}; 
-
-    try {
-
-        await dbConnect();
-        
-        console.log('- DATA SERVICE : DELETE SUBSCRIBER')
-        result = await subscriberModel.findByIdAndDelete({_id: id});
-        
-    } catch (error) {
-
-        console.log('err', error)
-        result = {  
-            errorCode : error.code,
-            message : 'Der skete en en validerings fejl?'
-        }
-    }
-
-    console.log('- DATA SERVICE : RETURN DELETED SUBSCRIBER')
-    return JSON.parse(JSON.stringify(result));
-
-
-};

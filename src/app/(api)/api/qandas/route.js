@@ -3,11 +3,13 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
 
-    console.log('\nQANDA API ROUTE (GET) FOR AT FÅ ALLE QANDA')
+    console.log('\n------ Get Qanda ------')
+    console.log('QANDA API ROUTE (GET) FOR AT FÅ ALLE QANDA')
     console.log('KALDER getQandas() I DATA SERVICE')
     const qandas = await getQandas();
 
     console.log('AFLEVERERE getQandas() RESULTAT TILBAGE TIL KALDEREN')
+    console.log('------\n')
     return NextResponse.json(qandas)
 
 }
