@@ -1,0 +1,46 @@
+.wrapper {
+
+    padding: 10px;
+    background-color: red;
+
+}
+
+.wrapper a {
+    text-decoration: none;
+    font-size: 12px;
+    padding: 5px 10px;
+    background-color: #000;
+    border-radius: 8px;
+}
+
+.wrapper a.active {
+    background-color: pink;
+    color: #000
+}
+
+.theme-global {
+    
+    background-color: blue;
+}
+
+.theme-site {
+    
+    background-color: green;
+}
+
+.theme-backoffice {
+    
+    background-color: #000;
+}
+
+.wrapper.theme-backoffice a {
+    background-color: #fff;
+    color: #000
+
+}
+
+.wrapper.theme-backoffice a.active {
+    background-color: pink;
+    color: #000
+}
+

@@ -1,0 +1,21 @@
+.container input {
+
+    padding: 10px;
+    display: block;
+    width: 100%;
+}
+
+.container button {
+    margin-top: 10px;
+    padding: 10px;
+
+}
+
+.container fieldset {
+    padding : 10px
+}
+
+.container  legend {
+
+padding: 5px 10px;
+}
