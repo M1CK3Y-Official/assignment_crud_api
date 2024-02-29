@@ -5,13 +5,13 @@ import { NextResponse } from "next/server";
 export async function GET() {
 
     console.log('\n------ Get Subscribers ------')
-    console.log('QANDA API ROUTE (GET) FOR AT FÅ ALLE QANDA')
+    console.log('SUBSCRIBER API ROUTE (GET) FOR AT FÅ ALLE SUBSCRIBERS')
     console.log('KALDER getSubscribers() I DATA SERVICE')
-    const qandas = await getSubscribers()
+    const subscribers = await getSubscribers()
     
-    console.log('AFLEVERERE getQandas() RESULTAT TILBAGE TIL KALDEREN')
+    console.log('AFLEVERERE getSubscribers() RESULTAT TILBAGE TIL KALDEREN')
     console.log('------\n')
-    return NextResponse.json(qandas)
+    return NextResponse.json(subscribers)
 
 
 };
